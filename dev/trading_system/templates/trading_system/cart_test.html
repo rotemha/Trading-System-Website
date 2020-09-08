@@ -1,0 +1,73 @@
+<style>
+    .row {
+        display: flex;
+    }
+
+    .column {
+
+        float: left;
+        width: 150%;
+        padding: 10px;
+
+    }
+</style>
+
+
+{% extends base_template_name %}
+{% block page_content %}
+    <h2 class="title">My Cart</h2>
+
+    <form id="my_cart" action="/show_cart" method='post'>
+        <div class="row">
+
+            <div class="column">
+                {% csrf_token %}
+
+                {% for item in form.items %}
+                    <p>
+                    <div class="check_item">{{ item }}</div></p>
+                {% endfor %}
+            </div>
+
+            {% if items_list %}
+                <div class="column">
+                    {% csrf_token %}
+                    {#				{% for c in int_ %}#}
+                    {#					<div class="check_item">{{ c }}</div>#}
+                    {#				{% endfor %}#}
+                    {{ qua.as_p }}
+
+                </div>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="column">
+
+                        <p>Shipping to:</p>
+                        {% csrf_token %}
+                        {{ shipping.as_p }}
+                        {% csrf_token %}
+                        {{ country.as_p }}
+
+
+                    </div>
+                    <div class="column">
+
+
+                        <p>Card details:</p>
+                        {% csrf_token %}
+                        {{ card.as_p }}
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div id="buy_button_1"><input class="buttons" type="submit" value="Buy now!"/></div>
+            {% endif %}
+    </form>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    {% load guardian_tags %}
+    <h2 class="title">My stores</h2>
+    <table class="my_stores">
+        <thead>
+        {% if object_list %}
+            <tr>
+                <th>Store</th>
+                <th>Add item</th>
+                <th>Edit store</th>
+                <th>Delete store</th>
+                <th>Add manager</th>
+                <th>Add discount</th>
+                <th>Add rule</th>
+            </tr>
+        {% endif %}
+        </thead>
+        <tbody>
+        {% for store in object_list %}
+            <tr>
+                {% get_obj_perms request.user for store as "user_store_perms" %}
+                <td>
+                    <form action="/store/view_details/{{ store.pk }}" method="GET">
+                        <input class="store_name_button" type="submit" value="{{ store.name }}">
+                    </form>
+                </td>
+
+                {% if "ADD_ITEM" in user_store_perms %}
+                    <td>
+                        <form action="/store/add_item_to_store/{{ store.pk }}" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-folder-plus"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if "EDIT_ITEM" in user_store_perms %}
+                    <td>
+                        <form action="/store/update/{{ store.pk }}" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-edit"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if "REMOVE_ITEM" in user_store_perms %}
+                    <td>
+                        <form action="/store/delete/{{ store.pk }}" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if "ADD_MANAGER" in user_store_perms %}
+                    <td>
+                        <form action="/store/add_manager_to_store/{{ store.pk }}" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-user-plus"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if "ADD_DISCOUNT" in user_store_perms %}
+                    <td>
+                        <form action="/store/add_discount_to_store/{{ store.pk }}/a" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-tags"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if "ADD_RULE" in user_store_perms %}
+                    <td>
+                        <form action="/store/add_base_rule_to_store/{{ store.pk }}/a" method="GET">
+                            <button class="store_buttons" type="submit"><i class="fas fa-lightbulb"></i></button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% empty %}
+            <tr class="title">No stores yet</tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

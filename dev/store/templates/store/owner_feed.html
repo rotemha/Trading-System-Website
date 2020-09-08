@@ -1,0 +1,17 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">My notifications</h2>
+    <table class="my_notifications">
+        {% for notification in object_list %}
+            <div>
+                {{ notification.msg }}
+
+            </div>
+
+            </tr>
+        {% empty %}
+            <tr class="title">No notifications yet</tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

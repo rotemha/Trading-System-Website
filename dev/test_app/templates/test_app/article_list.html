@@ -1,0 +1,20 @@
+{% extends 'test_app/base.html' %}
+{% block content %}
+    <h1>Articles</h1>
+    <ul>
+        {% for article in object_list %}
+            <li>{{ article.pub_date|date }} - {{ article.headline }}</li>
+            <form action="/test/articles/view/{{ article.pk }}" method="GET">
+                <input type="submit" value="View">
+            </form>
+            <form action="/test/articles/delete/{{ article.pk }}" method="get">
+                <input type="submit" value="Delete">
+            </form>
+            <form action="/test/articles/update/{{ article.pk }}" method="GET">
+                <input type="submit" value="Update">
+            </form>
+        {% empty %}
+            <li>No articles yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

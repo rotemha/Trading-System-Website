@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h2>Add item</h2>
+    <div class="add_item-container">
+
+        {#		<form action="/store/add_item/{{ store }}" method="post">#}
+        {#						{{ formset.management_form }}#}
+        {#						{% for form in formset %}#}
+        {#							{% csrf_token %}#}
+        {#							{{ form }}#}
+        {#						{% endfor %}#}
+        {#			<button type="submit">Add item to store : {{ store_name }} </button>#}
+        {#		</form>#}
+        {#		<p>	{% csrf_token %}{{ form.name }}</p>#}
+        <form action="/store/add_item/{{ store }}" method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+
+            </table>
+            <input type="submit" value="Add item to store : {{ store_name }}"/>
+        </form>
+
+    </div>
+</head>
+<body>
+
+</body>
+</html>

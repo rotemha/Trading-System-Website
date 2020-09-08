@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/css_message.css' %}">
+    <title>WeBuy</title>
+</head>
+<body>
+{% for message in messages %}
+    <div id="alert" role="alert">
+        <span class="close_btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span class="message">{{ message }}</span>
+    </div>
+{% endfor %}
+</body>
+</html>

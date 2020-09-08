@@ -1,0 +1,22 @@
+{% extends 'homepage_store_owner.html' %}
+
+{% block page_content %}
+    <h1>Stores: </h1>
+    <ul>
+        {% for store in object_list %}
+            <li>{{ store.store_id }}</li>
+            <form action="/store/delete/{{{ store.pk }}" method="GET">
+                <input type="submit" value="View">
+            </form>
+            <form action="/store/delete/{{ store.pk }}" method="GET">
+                <input type="submit" value="Delete">
+            </form>
+            <form action="/store/delete/{s{{ store.pk }}" method="GET">
+                <input type="submit" value="Update">
+            </form>
+        {% empty %}
+            <li>No articles yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

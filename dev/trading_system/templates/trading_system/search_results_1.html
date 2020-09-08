@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="center-align red lighten-3">{{ title }}</h3>
+    <ul class="collection">
+        <ul class="my_stores">
+            {% for item in object_list %}
+                <li>Name:{{ item.name }} Description:{{ item.description }}</li>
+                <form action="/store/view_item/{{ item.pk }}" method="GET">
+                    <input type="submit" value="View">
+                </form>
+                <form action="/store/buy_item/{{ item.pk }}" method="GET">
+                    <input type="submit" value="Buy">
+                </form>
+                <form action="/add_item_to_cart/{{ item.pk }}" method="GET">
+                    <input type="submit" value="Add to cart">
+                </form>
+            {% empty %}
+                <li>No Such item</li>
+            {% endfor %}
+        </ul>
+        {#		{% for item in results %}#}
+        {#			<li class="collection-item"><a href="home/item_page/{{ item.id }} "> {{ item.name }}#}
+        {#				: {{ item.description }}  </a></li>#}
+        {#			<p>lllllll</p>#}
+        {#		{% endfor %}#}
+    </ul>
+{% endblock %}

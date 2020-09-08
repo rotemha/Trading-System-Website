@@ -1,0 +1,51 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <div id="store_details">
+        <table class="store_details">
+            <tr>
+                <td>Store</td>
+                <td>{{ store.name }}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{ store.description }}</td>
+            </tr>
+            <tr>
+                <td>Owners</td>
+                <td>
+                    <ul>
+                        {% for owner in store.owners %}
+                            <li>{{ owner }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Managers</td>
+                <td>
+                    <ul>
+                        {% for manager in store.managers %}
+                            <li>{{ manager }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Items</td>
+                <td>
+                    <ul>
+                        {% for item in store.items %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        {#		<h4><strong>Items:</strong></h4>#}
+        {#		{% for item in object.items.all %}#}
+        {#			<p> {{ item }}</p>#}
+        {#		{% endfor %}#}
+
+    </div>
+{% endblock %}

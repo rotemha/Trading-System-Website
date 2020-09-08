@@ -1,0 +1,26 @@
+#alert {
+    background-color: #f44336;
+    color: white;
+    height: 30px;
+    text-align: center;
+}
+
+.close_btn {
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 40px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+.close_btn:hover {
+    color: black;
+}
+
+.message {
+    font-family: Arial;
+    font-size: 30px;
+}

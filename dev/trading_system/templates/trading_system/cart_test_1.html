@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {#	<form action="/test_cart" method="POST">#}
+    {#		<p>#}
+    {#			{{ csrf.token }}#}
+    {#			{{ form.as_p }}#}
+    {#		</p>#}
+    {#		<input type="submit" value="Buy">#}
+    {#	</form>#}
+
+    <form action="/show_cart" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Buy'>
+    </form>
+
+</head>
+<body>
+
+</body>
+</html>

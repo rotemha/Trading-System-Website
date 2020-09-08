@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="item_details">
+        <tr>
+            <td>Item:</td>
+            <td>{{ item.name }}</td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>{{ item.category }}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>{{ item.description }}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+    </table>
+{% endblock %}

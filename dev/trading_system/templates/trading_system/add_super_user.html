@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="title">Register as Admin</h2>
+    <form id="add_super_user" action="/super_user" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input id="add_button" type="submit" value="Add"/>
+    </form>
+{% endblock %}

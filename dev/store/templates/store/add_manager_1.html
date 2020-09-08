@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD MANAGER: </title>
+</head>
+<body>
+
+<form action="/store/add_manager_to_store/{{ pk }}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Add'>
+</form>
+</body>
+</html>

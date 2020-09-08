@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+    <input id="bid-offer-input" type="number" size="100"/><br/>
+    <input id="bid-submit" type="button" value="Bid"/>
+    <script>
+        var participantId = {{ participant_id_json }};
+
+        var chatSocket = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/auction_participant/' + {{ item_id}}+'/' + {{ participant_id}}+'/');
+
+        chatSocket.onmessage = function (e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            document.querySelector('#chat-log').value += (message + '\n');
+        };
+
+        chatSocket.onclose = function (e) {
+            console.error('Chat socket closed unexpectedly');
+            console.error(e);
+        };
+
+        document.querySelector('#bid-offer-input').focus();
+        document.querySelector('#bid-offer-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#bid-submit').click();
+            }
+        };
+
+        document.querySelector('#bid-submit').onclick = function (e) {
+            var messageInputDom = document.querySelector('#bid-input');
+            var message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+
+            messageInputDom.value = '';
+        };
+    </script>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul class="collection">
+    <ul class="my_stores">
+        {% for item in items %}
+            <li>Name:{{ item.name }} Description:{{ item.description }}</li>
+            <form action="/store/view_item/{{ item.id }}" method="GET">
+                <input type="submit" value="View">
+            </form>
+        {% empty %}
+            <li>No Such item</li>
+        {% endfor %}
+    </ul>
+    {#		{% for item in results %}#}
+    {#			<li class="collection-item"><a href="home/item_page/{{ item.id }} "> {{ item.name }}#}
+    {#				: {{ item.description }}  </a></li>#}
+    {#			<p>lllllll</p>#}
+    {#		{% endfor %}#}
+</ul>
+</body>
+</html>

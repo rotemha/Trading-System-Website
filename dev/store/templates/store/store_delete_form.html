@@ -1,0 +1,15 @@
+{% extends 'store/homepage_store_owner.html' %}
+
+{% block menu_bar_right %}
+    <div id="search_input">
+        <span id="search_input_1">Search: <input type="text"><br></span>
+        <button class="search_button" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <form id="form_delete_store" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete {{ object.name }} store?</p>
+        <input class="buttons" type="submit" value="Confirm">
+    </form>
+{% endblock %}

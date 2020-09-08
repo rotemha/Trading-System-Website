@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block menu_bar_right %}
+    <div id="search_input">
+        <span id="search_input_1">Search: <input type="text"><br></span>
+        <button class="search_button" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h3 class="center-align red lighten-3">{{ title }}</h3>
+    <ul class="collection">
+        <ul class="my_stores">
+            {% for cart in object_list %}
+                <li>Store id:{{ cart.store_id }} </li>
+                <form action="/view_cart/{{ cart.pk }}" method="GET">
+                    <input type="submit" value="View">
+                </form>
+            {% empty %}
+                <li>No Carts yet</li>
+            {% endfor %}
+        </ul>
+    </ul>
+{% endblock %}

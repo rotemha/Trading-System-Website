@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div class="menu_bar">
+    <div>
+        <a href="/home_button/">Home</a>
+        {#		<a href="/test_cart/">testt</a>#}
+        {% block menu_bar_left %}
+        {% endblock %}
+    </div>
+
+    <div id="cart_search">
+        <button class="menu_bar_buttons" onclick="window.location.href='/show_cart/'"><i
+                class="fas fa-shopping-cart"></i></button>
+        {% block menu_bar_right %}
+            <form id="form_search" action="/view_items/" method="get">
+                {% csrf_token %}
+                <table id="table_search">
+                    <tr>
+                        <td>{{ text.as_p }}</td>
+                        <td></td>
+                        <td>
+                            <button class="search_button" type="submit"><i class="fas fa-search"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        {% endblock %}
+    </div>
+</div>
+
+
+<div class="top_page" style="background-image:url('{% static "images/shopp.jpg" %}'); padding: 14px 16px;">
+    <div>
+        <h1><strong>WeBuy</strong></h1>
+    </div>
+</div>
+
+<div>
+    {% include 'messages.html' %}
+</div>
+
+
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+</body>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBuy</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+</html>

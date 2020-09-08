@@ -1,0 +1,40 @@
+{% extends "homepage_member.html" %}
+{% load static %}
+
+{% block vertical_menu %}
+    <a href="/store/view_store/">My Stores</a>
+    <a href="/store/store_owner_feed/{{ owner_id }}" onclick="reset_counter"><span>My Feed</span> <span id='noa'></span></a>
+    <div id="feed">
+        <script>
+            var count = {{ unread_notifications }};
+            if (count > 0) {
+                document.getElementById('noa').innerHTML = count
+            }
+            var ownerId = {{ owner_id}};
+            var chatSocket = new WebSocket(
+                'ws://' + window.location.host +
+                '/ws/store_owner/' + {{ owner_id }}+'/');
+            chatSocket.onmessage = function (e) {
+                count = count + 1;
+                document.getElementById('noa').innerHTML = count
+            };
+            chatSocket.onclose = function (e) {
+                console.error(e);
+            };
+
+            function reset_counter() {
+                count = 0;
+                var x = document.getElementById('noa');
+                x.style.display = 'none'
+            }
+        </script>
+    </div>
+    <div>
+        <p>need to approve: </p>
+        {{ approve_form.as_p }}
+    </div>
+{% endblock %}
+
+
+{% block page_content %}
+{% endblock %}

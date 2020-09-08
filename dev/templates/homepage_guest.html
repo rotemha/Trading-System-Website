@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block menu_bar_left %}
+    <a href="/accounts/login/">Login</a>
+    <a href="/accounts/signup/">Sign up</a>
+{% endblock %}
+
+
+{% block content %}
+    <div class="welcome">
+        <p>Hello guest</p>
+    </div>
+    {% block page_content %}
+    {% endblock %}
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">Add Discount To Store</h2>
+    <div style="font-family: Arial">
+        <form action="" method='post'>
+            {% csrf_token %}
+            <div>Percentage: {{ form.percentage }} %</div>
+            <div>End date: {{ form.end_date }} format: mm/dd/yyyy</div>
+            <br>
+            <div>Do you want to add condition? <input id="cond" type="checkbox" onclick="condition()"></div>
+            <div id="cond_1" style="display: none">Choose condition type: {{ form.type }}</div>
+            <div id="cond_2" style="display: none">Choose items amount: {{ form.amount }}</div>
+            <br>
+            <div>Do you want to add an item to the discount? <input id="item" type="checkbox" onclick="choose_item()">
+            </div>
+            <div id="item_1" style="display: none">Choose item: {{ form.item }}</div>
+
+            <br>
+            <button class="buttons" type="submit" formaction="ok">Submit</button>
+            <button class="buttons" type="submit" formaction="complex">Complex</button>
+        </form>
+    </div>
+    <script>
+        function choose_item() {
+            var item = document.getElementById("item");
+            var addItem = document.getElementById("item_1");
+            if (item.checked == true) {
+                addItem.style.display = "block"
+            } else {
+                addItem.style.display = "none"
+            }
+
+        }
+
+        function condition() {
+            var condition = document.getElementById("cond");
+            var type = document.getElementById("cond_1");
+            var amount = document.getElementById("cond_2");
+            if (condition.checked == true) {
+                type.style.display = "block";
+                amount.style.display = "block"
+            } else {
+                type.style.display = "none";
+                amount.style.display = "none"
+            }
+        }
+
+
+    </script>
+{% endblock %}
+

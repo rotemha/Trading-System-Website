@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="items_table">
+        <h2 class="title_1">Results</h2>
+        <table class="search_results">
+            <thead>
+            {% if object_list %}
+                <th>Item</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Sale</th>
+                <th>Quantity</th>
+                <th>Buy</th>
+                <th>Add to Cart</th>
+            {% endif %}
+            </thead>
+            <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>
+                        <form action="/store/view_item/{{ item.pk }}" method="GET">
+                            <input class="item_name_button" type="submit" value="{{ item.name }}">
+                        </form>
+                        <div id="item_desc">{{ item.description }}</div>
+                    </td>
+                    <td>
+                        <div class="item_price">{{ item.get_category_display }}</div>
+                    </td>
+                    <td>
+                        <div class="item_price">{{ item.price }}</div>
+                    </td>
+                    <td>
+                        <form action="/view_discounts/{{ item.pk }}" method="GET">
+                            <button class="item_buttons" type="submit"><i class="fas fa-tags"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <div class="item_price">{{ item.quantity }}</div>
+                    </td>
+                    <td>
+                        <form action="/store/buy_item/{{ item.pk }}" method="GET">
+                            <button class="item_buttons" type="submit"><i class="far fa-credit-card"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/add_item_to_cart/{{ item.pk }}" method="GET">
+                            <button class="item_buttons" type="submit"><i class="fas fa-cart-plus"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <span class="semi_title">No results for this search</span>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+{% endblock %}

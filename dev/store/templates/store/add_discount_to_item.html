@@ -1,0 +1,13 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">Add Discount To Item</h2>
+    <form id="add_discount_container" action="/store/add_discount_to_item/{{ pk }}" method="post">
+        {% csrf_token %}
+        <span>{{ form.as_p }} </span>
+        &real;1------&#9997;-------
+        <p>
+            {{ cond_max_min.as_p }}
+            =================</p>
+        <input id="add_button" type="submit" value="Add"/>
+    </form>
+{% endblock %}

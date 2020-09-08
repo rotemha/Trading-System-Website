@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block menu_bar_left %}
+    <a href="/accounts/logout/">Logout</a>
+{% endblock %}
+
+
+{% block content %}
+    <div class="welcome">
+        <p>Hello {{ user_name }} </p>
+    </div>
+    <div id="member_page">
+        <div class="vertical-menu">
+            <a href="/accounts/password_change/">Change password</a>
+            <a href="/store/add_store/">Add store</a>
+            {% block vertical_menu %}
+            {% endblock %}
+        </div>
+        <div class="member_page_content">
+            {% block page_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

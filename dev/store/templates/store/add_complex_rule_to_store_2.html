@@ -1,0 +1,15 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">Add Complex Rule To Store</h2>
+    <p>now you need to add a complex rule (e.g 2 base rules and operator) and an operator to be combined with the
+        previously submitted rule</p>
+    <div>
+        <form action="" method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="buttons" type="submit" formaction="ok">Submit</button>
+            <button class="buttons" type="submit" formaction="complex1">Complex 1</button>
+            <button class="buttons" type="submit" formaction="complex2">Complex 2</button>
+        </form>
+    </div>
+{% endblock %}

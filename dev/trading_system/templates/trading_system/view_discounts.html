@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="title_1">Discounts:</h2>
+    <div>
+        {% for discount in discounts %}
+            <div style="font-family: Arial">{{ discount }}</div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

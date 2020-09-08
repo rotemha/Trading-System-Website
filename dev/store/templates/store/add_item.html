@@ -1,0 +1,15 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">Add item</h2>
+    <div>
+        <form action="/store/add_item/{{ store }}" method="post">
+            {% csrf_token %}
+            <div id="add_item_container">
+                <table id="form_add_item">
+                    {{ form.as_table }}
+                </table>
+                <input id="add_button" type="submit" value="Add"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}

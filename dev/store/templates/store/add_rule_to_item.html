@@ -1,0 +1,11 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <h2 class="title">Add Rule To Store</h2>
+    <div>
+        <form action="/store/add_rule_to_item/{{ pk }}" method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type='submit' value='Add'>
+        </form>
+    </div>
+{% endblock %}

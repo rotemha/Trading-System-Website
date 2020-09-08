@@ -1,0 +1,27 @@
+{% extends base_template_name %}
+{% load static %}
+
+{% block page_content %}
+    <h2 class="title">Add store</h2>
+    <form class="form_add_store" action="submit/" method="get">
+        <table>
+            <tr>
+                <td>{{ set_input.name.label_tag }}</td>
+                <td>{{ set_input.name }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ set_input.description.label_tag }}</td>
+                <td>{{ set_input.description }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button class="buttons" type="submit">Open</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Cart of store: {{ store_name }}</h1>
+    {% for item in items %}
+        <li>Name:{{ item.name }} Description:{{ item.description }}</li>
+        <form action="/store/view_item/{{ item.pk }}" method="GET">
+            <input type="submit" value="View">
+        </form>
+    {% empty %}
+        <li>No stores yet</li>
+    {% endfor %}
+{% endblock %}

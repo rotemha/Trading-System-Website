@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <h2 class="title_2">Buy Item</h2>
+    <div id="buy_item">
+        <form method="post" action="/store/buy_item/{{ pk }}">
+
+            <div id="buy_name">{{ name }}</div>
+            <div id="buy_desc">{{ description }}</div>
+
+            <div class="buy_1">Price: <input type="text" id="price" readonly value={{ price }} class="readonly"/> $
+            </div>
+            <div class="buy_1">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <div class="buy_1">Total: <input type="text" id="total" readonly value="" class="readonly"/>$</div>
+
+            <div>
+                <p>Shipping to:</p>
+                {% csrf_token %}
+                {{ shipping.as_p }}
+                {% csrf_token %}
+                {{ country.as_p }}
+
+            </div>
+
+            <div>
+                <p>Card details:</p>
+                {% csrf_token %}
+                {{ card.as_p }}
+
+            </div>
+
+            <div id="buy_button">
+                <input class="buttons" type="submit" value="Buy now!"/>
+            </div>
+
+
+            <script>
+                $('#id_amount').on('click', function () {
+                    var tot = $('#price').val() * this.value;
+                    $('#total').val(tot);
+                });
+                $('#id_amount').on('keyup', function () {
+                    var tot = $('#price').val() * this.value;
+                    $('#total').val(tot);
+                });
+
+                var inputs = document.getElementsByTagName('input');
+
+                for (var i = 0; i < inputs.length; i++) {
+                    var text = document.createTextNode('$');
+                    inputs[i].parentNode.insertAfter(text, inputs[i]);
+                }
+            </script>
+        </form>
+    </div>
+    {#	<h2 class="title">Buy Item</h2>#}
+    {#	<form method="post">#}
+    {##}
+    {#		<tbody>#}
+    {#		<tr>#}
+    {#			<form action="/store/buy_item/{{ pk }}" method="post">#}
+    {#				<p>description</p>#}
+    {#				<td class="description">{{ description }}</td>#}
+    {#				<p>price</p>#}
+    {#				<td>#}
+    {#					<input type="text" id="price" readonly value={{ price }} class="readonly"/> $#}
+    {#				</td>#}
+    {#				<td>#}
+    {#					{% csrf_token %}#}
+    {#					{{ form.as_p }}#}
+    {#				</td>#}
+    {#				<p>total</p>#}
+    {#				<td>#}
+    {#					<input type="text" id="total" readonly value="" class="readonly"/>$#}
+    {#				</td>#}
+    {#				<p><input type="submit" value="Buy now!"/></p>#}
+    {#			</form>#}
+    {##}
+    {#		</tr>#}
+    {#	<script>#}
+    {#		$('#id_amount').on('click', function () {#}
+    {#			var tot = $('#price').val() * this.value;#}
+    {#			$('#total').val(tot);#}
+    {#		});#}
+    {#		$('#id_amount').on('keyup', function () {#}
+    {#			var tot = $('#price').val() * this.value;#}
+    {#			$('#total').val(tot);#}
+    {#		});#}
+    {##}
+    {#		var inputs = document.getElementsByTagName('input');#}
+    {##}
+    {#		for (var i = 0; i < inputs.length; i++) {#}
+    {#			var text = document.createTextNode('$');#}
+    {#			inputs[i].parentNode.insertAfter(text, inputs[i]);#}
+    {#		}#}
+    {#	</script>#}
+    {#	</tbody>#}
+    {#	</form>#}
+
+{% endblock %}

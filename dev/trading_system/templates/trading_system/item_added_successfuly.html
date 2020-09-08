@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    Item added successfully to cart!
+    <button onclick="goBack()">Back To Search</button>
+    <script>
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+{% endblock %}

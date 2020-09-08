@@ -1,0 +1,56 @@
+{% extends 'store/homepage_store_owner.html' %}
+{% block page_content %}
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div>Items:</div>
+        {% for item in form_.items %}
+            <div class="check_item">{{ item }}</div>
+        {% endfor %}
+        <br>
+        <hr>
+        <br>
+        <div>Managers:</div>
+        {% for m in delete_owners.owners_to_delete %}
+            <div class="delete_manager">{{ m }}</div>
+        {% endfor %}
+        <br>
+        <hr>
+        <br>
+	    <input type="submit" value="Update">
+    </form>
+    <div>Rules:</div>
+    {% for rule in rules %}
+        <div>
+            <span>{{ rule.name }}</span>
+	        <span>
+				<form action="/store/remove_rule_from_store/{{ rule.id }}/{{ rule.type }}/{{ rule.store }}"
+                      method="GET">
+						<button type="submit">Delete</button>
+				</form>
+	        </span>
+        </div>
+        <hr>
+    {% endfor %}
+    <br>
+    <hr>
+    <br>
+    <div>Discounts:</div>
+    {% for discount in discounts %}
+        <div>
+            <span>{{ discount.name }}</span>
+            <span>
+				<form action="/store/remove_discount_from_store/{{ discount.id }}/{{ discount.type }}/{{ discount.store }}"
+                      method="GET">
+						<button type="submit">Delete</button>
+				</form>
+			</span>
+        </div>
+        <hr>
+    {% endfor %}
+    {#	<div>#}
+    {#	<form id="my_cart" action="/show_cart" method='post'>#}
+    {#	#}
+    {#	<div id="buy_button_1"><input class="buttons" type="submit" value="Buy now!"/></div>#}
+    {#	</div>#}
+{% endblock %}
